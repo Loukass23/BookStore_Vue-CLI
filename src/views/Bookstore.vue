@@ -32,7 +32,7 @@
                   <div class="inner text-center">
                     <h3>{{book.titulo}}</h3>
                     <p id="description">{{book.descripcion}}</p>
-                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">See more</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" >See more</button>
                     
                   </div>
                 

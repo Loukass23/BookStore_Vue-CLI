@@ -1,48 +1,41 @@
 <template>
     <div>
+
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" v-for="book in books" :key="book.id">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item">
-                                <img v-bind:src=book.portada alt="Image" class="img-fluid" id="book-img"> 
-                                <div class="carousel-caption">
-                                    {{book.titulo}}
-                                </div>
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" >
+                        
+                        <div class="carousel-inner" >
+                            <div class="carousel-item " v-for="(book,index) in books" :key="book.id" >
+                                <img v-bind:src=books[index].portada alt="Image" class="img-fluid" id="book-img">
+                        
+                            <div class="carousel-caption d-none d-md-block mt-auto">
+                               <h5>{{book.titulo}}</h5> 
+                               <p>{{book.descripcion}}</p> 
                             </div>
-                                <!-- <div class="item">
-                            <img class="img-responsive" src="http://placehold.it/1200x600/fffccc/000&text=Two" alt="...">
-                            <div class="carousel-caption">
-                                Another Image
                             </div>
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" src="http://placehold.it/1200x600/fcf00c/000&text=Three" alt="...">
-                            <div class="carousel-caption">
-                                Another Image
+                             <div class="carousel-item active" >
+                                 First
+                                <!-- <img v-bind:src=books[index].portada alt="Image" class="img-fluid" id="book-img"> -->
                             </div>
-                        </div> -->
-
-                        </div>
-                    </div>
-                                <!-- Controls -->
-                                <a class="left carousel-control" href="#carousel-example-generic" role="button"
-                                    data-slide="prev">
-                                    <span class="glyphicon glyphicon-chevron-left"></span>
-                                </a>
-                                <a class="right carousel-control" href="#carousel-example-generic" role="button"
-                                    data-slide="next">
-                                    <span class="glyphicon glyphicon-chevron-right"></span>
-                                </a>
                             
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
                 </div>
             </div>
- 
+        </div>
+    </div>
+
 
 </template>
 
@@ -57,5 +50,14 @@
 </script>
 
 <style scoped>
-
+.carousel-inner img{
+    opacity: .2;
+}
+.carousel-caption {
+    color: black;
+    top : 20px;
+}
+.carousel-control-next, .carousel-control-prev, .sr-only {
+    background-color: rgba(0, 0, 0, 0.342);
+}
 </style>
