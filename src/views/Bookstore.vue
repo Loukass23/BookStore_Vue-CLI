@@ -15,6 +15,8 @@
         </div>
       </div>
       <hr>
+      <scale-loader v-if="!dataRetrieved"></scale-loader>
+      <modal  v-bind:books= books></modal>
       <div class="row">
         <div class="col-sm-12 text-center ">
           <div class="flip flex-container" id="book-container">
@@ -30,7 +32,8 @@
                   <div class="inner text-center">
                     <h3>{{book.titulo}}</h3>
                     <p id="description">{{book.descripcion}}</p>
-                    <button type="button" class="btn btn-default">See more</button>
+                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">See more</button>
+                    
                   </div>
                 
               </div>
@@ -43,7 +46,14 @@
 </template>
 
 <script>
+import Modal from '@/components/Modal.vue'
+import ScaleLoader from '@/components/ScaleLoader.vue'
   export default {
+    name: 'bookstore',
+    components: {
+Modal,
+ScaleLoader
+    },
     data() {
       return {
         url: 'https://api.myjson.com/bins/udbm5',
