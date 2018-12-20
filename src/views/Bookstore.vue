@@ -16,11 +16,11 @@
       </div>
       <hr>
       <scale-loader v-if="!dataRetrieved"></scale-loader>
-      <modal  v-bind:books= books></modal>
+     <modal v-if="modalShown" v-bind:position= position v-bind:books= books> </modal>
       <div class="row">
         <div class="col-sm-12 text-center ">
           <div class="flip flex-container" id="book-container">
-          <div v-for="book in searchBook" :key="book.id" class="card" id="book-item">
+          <div v-for="(book,index) in searchBook" :key="book.id" class="card" id="book-item">
             
                 <div class="face front">
                   <div class="inner flex-item max-width: 50%">
@@ -32,8 +32,7 @@
                   <div class="inner text-center">
                     <h3>{{book.titulo}}</h3>
                     <p id="description">{{book.descripcion}}</p>
-                    <button class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg" >See more</button>
-                    
+                    <button class="btn btn-default" data-toggle="modal" data-target="#exampleModal"  v-on:click="showModal(index)">See more</button>
                   </div>
                 
               </div>
@@ -41,6 +40,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
@@ -57,9 +57,12 @@ ScaleLoader
     data() {
       return {
         url: 'https://api.myjson.com/bins/udbm5',
-        books: [],
+        books: null,
         searchInput: '',
-        dataRetrieved: false
+        dataRetrieved: false,
+        modalShown: false,
+        position: 0
+
       }
     },
     methods: {
@@ -74,7 +77,12 @@ ScaleLoader
             this.dataRetrieved = true;
 
           })
-          .catch(console.error("Server Error"));
+          
+      },
+      showModal(index) {
+  this.position = index
+  this.modalShown = true 
+  console.log(index)
       }
     },
     created() {
@@ -83,7 +91,7 @@ ScaleLoader
     computed: {
        searchBook: function() {
          if (this.dataRetrieved) {
-            console.log(this.searchInput.value)      
+              
         return this.books.filter(book => book.titulo.toUpperCase().match(this.searchInput.toUpperCase()) )
          }
          }
