@@ -60,7 +60,7 @@ ScaleLoader
         books: null,
         searchInput: '',
         dataRetrieved: false,
-        modalShown: false,
+        modalShown: true,
         position: 0
 
       }
@@ -80,6 +80,7 @@ ScaleLoader
           
       },
       showModal(index) {
+  this.modalShown = false;
   this.position = index
   this.modalShown = true 
   console.log(index)
